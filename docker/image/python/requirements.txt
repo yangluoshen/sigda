@@ -1,0 +1,8 @@
+redis
+pymysql
+requests
+flask
+flask-sqlalchemy
+flask-migrate
+flask-script
+Celery==3.1.15

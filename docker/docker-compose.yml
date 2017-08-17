@@ -1,0 +1,29 @@
+version: '2'
+services:
+    sigda:
+        build: image/python
+        ports:
+            - "5757:5757"
+        volumes:
+            - ./dev/start_web.sh:/etc/run/start_web.sh
+            - ./dev/init_db.sh:/etc/run/init_db.sh
+            - ..:/opt/trigger
+        links:
+            - sigda-redis
+            - sigda-mysql
+        environment:
+            ENV: dev
+            PROJECT_ROOT: /opt/trigger
+            C_FORCE_ROOT: 1
+            SIGDA_SERVER_TEST: 'dev'
+    sigda-redis:
+        build: image/redis
+        volumes:
+            - /etc/localtime:/etc/localtime:ro
+    sigda-mysql:
+        build: image/mysql
+        volumes:
+            - /etc/localtime:/etc/localtime:ro
+        environment:
+            MYSQL_DATABASE: sigda
+            MYSQL_ROOT_PASSWORD: sigda
