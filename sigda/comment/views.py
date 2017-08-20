@@ -6,11 +6,7 @@ import logging
 
 blueprint = Blueprint(__name__, __name__)
 
-@blueprint.route('/')
-def home():
+@blueprint.route('/comment/')
+def comment():
 
-    return 'Hello Sigda'
-
-
-
-
+    return 'comment'

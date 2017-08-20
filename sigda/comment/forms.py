@@ -1,7 +1,8 @@
 #coding:utf-8
-from wtfroms import (Form, StingField, DateTimeField)
+from wtforms import (Form, StringField, DateTimeField)
 
-class GetCommentForm(Form):
+class CommentForm(Form):
 
     username = StringField('username')
-    comment = StringField('comment')
+    content = StringField('content')
+    respto = StringField('respto')

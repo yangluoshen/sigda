@@ -7,13 +7,13 @@ services:
         volumes:
             - ./dev/start_web.sh:/etc/run/start_web.sh
             - ./dev/init_db.sh:/etc/run/init_db.sh
-            - ..:/opt/trigger
+            - ..:/opt/sigda
         links:
             - sigda-redis
             - sigda-mysql
         environment:
             ENV: dev
-            PROJECT_ROOT: /opt/trigger
+            PROJECT_ROOT: /opt/sigda
             C_FORCE_ROOT: 1
             SIGDA_SERVER_TEST: 'dev'
     sigda-redis:

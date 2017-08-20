@@ -29,7 +29,11 @@ SIGDA的定位是创建一个临时的空间，在某些特殊日子给某人或
 * Comment
 * Notifier. 通知可用celery 实现。
 
-## Skill
+## Skills
 
-* flask, docker, celery, sqlalchemy, mysql, redis, etc.
+* flask, celery, sqlalchemy, mysql, redis, etc.
+
+## Tools
+
+* Sentry, Docker
 

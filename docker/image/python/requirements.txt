@@ -1,7 +1,10 @@
 redis
 pymysql
 requests
+WTForms
+raven
 flask
+flask-restful
 flask-sqlalchemy
 flask-migrate
 flask-script
