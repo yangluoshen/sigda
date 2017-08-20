@@ -1,9 +1,11 @@
 # coding:utf-8
 
 from flask_sqlalchemy import SQLAlchemy
-
 from sqlalchemy.dialects.mysql import (BIGINT, DATETIME, INTEGER, VARCHAR)
 from datetime import datetime
+
+from sigda.config.common import USERNAME_LEN
+
 
 db = SQLAlchemy()
 
@@ -20,7 +22,7 @@ class Comment(db.Model, MySqlTableArgs):
     userid = db.Column(db.Integer, nullable=False)
     content = db.Column(db.String(1024), nullable=False)
     time = db.Column(db.String(20), nullable=False)
-    respto = db.Column(db.String(20), nullable=True)  #response to someone(userid)?
+    respto = db.Column(db.String(USERNAME_LEN), nullable=True)  
 
     def __init__(self, userid, content, respto):
 
@@ -42,18 +44,50 @@ class User(db.Model, MySqlTableArgs):
     __tablename__ = 'user'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    name = db.Column(db.String(30), nullable=False)
+    name = db.Column(db.String(USERNAME_LEN), nullable=False)
+    email = db.Column(db.String(50), nullable=True)
 
-    def __init__(self, name):
+    def __init__(self, name, email=''):
 
         self.name = name 
+        self.email = email
 
     def __repr__(self):
 
-        return 'User({})'.format(self.name)
+        return 'User({}, {})'.format(self.name, self.email)
 
     def __str__(self):
         
-        return '<User {},{}>'.format(self.id, self.name)
+        return repr(self)
+
+
+'''
+We may owe many significant days,
+a `Context` indicate a significant day
+'''
+class Context(db.Model, MySqlTableArgs):
+    __tablename__ = 'context'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    creator = db.Column(db.Integer, nullable=False)
+    date = db.Column(db.String(20), nullable=False)
+    forwhom = db.Column(db.String(USERNAME_LEN), nullable=True)
+    details = db.Column(db.String(256), nullable=True)
+
+    def __init__(self, creator, date, forwhom='', details=''):
+
+        self.creator = creator
+        self.date = date
+        self.forwhom = forwhom
+        self.details = details
+
+    def __repr__(self):
+
+        return 'Context({}, {}, {}, {})'.format(self.creator, self.date, self.forwhom, self.details)
+
+    def __str__(self):
+
+        return repr(self)
+
 
 

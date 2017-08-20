@@ -5,15 +5,16 @@ ls
 
 # db
 
-python hamster/manage.py db init
-python hamster/manage.py db migrate -m "auto "
-python hamster/manage.py db upgrade heads
+python sigda/manage.py db init
+python sigda/manage.py db migrate -m "auto "
+python sigda/manage.py db upgrade heads
 while [ $? -ne 0 ]
 do
     sleep 10
-    python hamster/manage.py db upgrade heads
+    python sigda/manage.py db upgrade heads
 done
 
+:<<'
 # celery
 echo "celery -A------------------"
 
@@ -28,3 +29,5 @@ fi
 
 celery beat -A hamster.celeryapp.tasks -l debug &
 celery -A hamster.celeryapp.tasks worker -l debug &
+
+'

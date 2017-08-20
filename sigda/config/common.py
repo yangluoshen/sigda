@@ -19,3 +19,5 @@ class ErrorCode(object):
     FAILURE = (-1, 'Failure')
 
 
+USERNAME_LEN = 30
+

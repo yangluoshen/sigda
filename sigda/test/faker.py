@@ -23,6 +23,7 @@ class Faker(object):
     def __init__(self, name=None):
 
         self.name = name or Faker.get_rand_fakername()
+        self.email = 'faker@byted.com'
 
     @staticmethod
     def get_rand_fakername():
@@ -51,19 +52,32 @@ def visit_index():
     return requests.get(url='http://{ip}:{port}/index/'.format(ip=host, port=port))
 
 @log
-def comment(content):
+def comment(name, content):
 
-    faker = Faker()
-    data = {'username': faker.name,
+    data = {'username': name,
             'content': content,
             }
 
-    return requests.post(url='http://{ip}:{port}/comment/'.format(ip=host, port=port), data=json.dumps(data))
+    return requests.post(url='http://{ip}:{port}/comment/'.format(ip=host, port=port), data=data)
+
+
+@log
+def create_user(name, email):
+
+    data = {'name': name, 'email': email}
+
+    return requests.post(url='http://{ip}:{port}/user/'.format(ip=host, port=port), data=data)
+
 
 
 if __name__ == '__main__':
 
-    visit_index()
+    faker = Faker()
 
-    comment('Happy Birthday!')
+    rsp = create_user(faker.name, faker.email)
+
+    #visit_index()
+
+    #rsp = comment('Happy Birthday!')
+    print(rsp.text)
 
