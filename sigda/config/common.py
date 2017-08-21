@@ -17,6 +17,7 @@ class ErrorCode(object):
 
     SUCCESS = (0, 'Success')
     FAILURE = (-1, 'Failure')
+    EXIST = (-2, 'Exist')
 
 
 USERNAME_LEN = 30

@@ -7,7 +7,7 @@ class JsonResponse(dict):
     def __init__(self, data=None, error=ErrorCode.SUCCESS, msg=''):
 
         self.data = data or {}
-        self.code, msg = error
+        self.code, self.msg = error
         if msg:
             self.msg = msg
 

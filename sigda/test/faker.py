@@ -5,6 +5,7 @@ sys.path.append('./')
 
 import requests
 import logging
+from datetime import datetime
 import json
 
 logging.basicConfig(level=logging.DEBUG,  
@@ -68,16 +69,29 @@ def create_user(name, email):
 
     return requests.post(url='http://{ip}:{port}/user/'.format(ip=host, port=port), data=data)
 
+@log
+def create_context(creator, date, forwhom, details):
+
+    data = {'creator': creator,
+            'date': date,
+            'forwhom': forwhom,
+            'details': details,
+            }
+
+    return requests.post(url='http://{ip}:{port}/context/'.format(ip=host, port=port), data=data)
 
 
 if __name__ == '__main__':
 
     faker = Faker()
 
-    rsp = create_user(faker.name, faker.email)
+    rsp = create_user('shenweimin', faker.email)
+    print(rsp.text)
+    rsp = create_context('shenweimin', datetime.now().strftime("%m-%d"), 'Devil', 'Birthday')
+    print(rsp.text)
+
 
     #visit_index()
 
     #rsp = comment('Happy Birthday!')
-    print(rsp.text)
 
