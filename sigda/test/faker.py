@@ -53,9 +53,10 @@ def visit_index():
     return requests.get(url='http://{ip}:{port}/index/'.format(ip=host, port=port))
 
 @log
-def comment(name, content):
+def comment(contextid, name, content):
 
-    data = {'username': name,
+    data = {'contextid':contextid,
+            'username': name,
             'content': content,
             }
 
@@ -80,15 +81,22 @@ def create_context(creator, date, forwhom, details):
 
     return requests.post(url='http://{ip}:{port}/context/'.format(ip=host, port=port), data=data)
 
-
-if __name__ == '__main__':
-
+def testcase1():
     faker = Faker()
 
     rsp = create_user('shenweimin', faker.email)
     print(rsp.text)
     rsp = create_context('shenweimin', datetime.now().strftime("%m-%d"), 'Devil', 'Birthday')
     print(rsp.text)
+    rsp = create_user('rengar', faker.email)
+    print(rsp.text)
+    rsp = comment('3', 'rengar', 'Happy birthday')
+    print(rsp.text)
+
+
+if __name__ == '__main__':
+
+    testcase1()
 
 
     #visit_index()

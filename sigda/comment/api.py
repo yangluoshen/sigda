@@ -7,6 +7,7 @@ from sigda.config.response import JsonResponse
 from sigda.config.common import ErrorCode
 from sigda.comment.forms import CommentForm
 from sigda.comment.services import CommentDbService
+from sigda.user.services import UserDbService
 
 import logging
 
@@ -26,10 +27,12 @@ class CreateComment(Resource):
             logging.error('{} not found'.format(username))
             return JsonResponse({}, ErrorCode.FAILURE, 'user not found')
 
+        contextid = int(form.contextid.data)
         content = form.content.data
         respto = form.respto.data
 
-        comment = CommentDbService.add(user.id, content, respto)
+
+        comment = CommentDbService.add(contextid, user.id, content, respto)
         if not comment:
             logging.error('add comment failed')
             return JsonResponse({}, ErrorCode.FAILURE, 'add comment failed')
