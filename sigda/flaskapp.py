@@ -8,6 +8,7 @@ import sigda.blueprint as blueprint
 import sigda.config.common as const
 from redis import Redis
 
+
 def create_app():
     
     from sigda.models import db

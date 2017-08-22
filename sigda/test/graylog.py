@@ -1,13 +1,16 @@
 #coding:utf-8
 
+#from graypy import GELFHandler
+
 import logging.config
+import logging
 
 '''
-logging.basicConfig(level=logging.DEBUG,  
-                    format='%(asctime)s %(levelname) %(filename)s [line:%(lineno)d][%(funcName)s] %(message)s',  
-                    datefmt='%m-%d %H:%M',  
-                    filename='sigda_server.log',  
-                    filemode='a') 
+handler = GELFHandler(host='0.0.0.0', port=12201)
+logger = logging.getLogger()
+
+logger.addHandler(handler)
+logger.error('catch error')
 '''
 
 LOG_LEVEL = 'DEBUG'
@@ -29,8 +32,7 @@ def get_log_config(category):
                 'level': LOG_LEVEL,
                 'formatter': 'default',
                 'class': 'graypy.GELFHandler',
-                #'host': '0.0.0.0',
-                'host': 'sigda-graylog2',
+                'host': '0.0.0.0',
                 'port': 12201,
                 'debugging_fields': False,
                 'facility': category
@@ -53,21 +55,12 @@ def get_log_config(category):
         }
     }
 
-SERVER_LOG_CONFIG = get_log_config('sigda_server')
-logging.config.dictConfig(SERVER_LOG_CONFIG)
+LOG_CONFIG = get_log_config('sigda')
+logging.config.dictConfig(LOG_CONFIG)
 
-SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:{password}@{host}/{db}?charset=utf8mb4'.format(
-            host='sigda-mysql',
-            password='sigda',
-            db='sigda'
-        )
-
-class ErrorCode(object):
-
-    SUCCESS = (0, 'Success')
-    FAILURE = (-1, 'Failure')
-    EXIST = (-2, 'Exist')
+logging.error('catch error again2')
 
 
-USERNAME_LEN = 30
+
+
 

@@ -90,7 +90,7 @@ def testcase1():
     print(rsp.text)
     rsp = create_user('rengar', faker.email)
     print(rsp.text)
-    rsp = comment('3', 'rengar', 'Happy birthday')
+    rsp = comment('1', 'rengar', 'Happy birthday')
     print(rsp.text)
 
 

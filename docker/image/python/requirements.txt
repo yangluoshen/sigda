@@ -1,6 +1,7 @@
 redis
 pymysql
 requests
+graypy
 WTForms
 raven
 flask
