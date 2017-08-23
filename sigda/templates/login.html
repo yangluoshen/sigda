@@ -1,0 +1,26 @@
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="/static/css/login.css">
+</head>
+
+<body>
+    <div class="container">
+      <div class="col-md-6">
+        <div id="logbox">
+          <form id="signup" method="post" action="/login/">
+            <h1>登录</h1>
+            <input name="name" type="text" placeholder="昵称" class="input pass" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" />
+            <input name="passwd" type="password" placeholder="密码" required="required" class="input pass"/>
+            <input name="email" type="email" placeholder="邮箱(可选）" class="input pass"/>
+            <input type="submit" value="登录" class="inputButton"/>
+          </form>
+		  <div class="notifier">
+            {{notify}}
+         </div>
+        </div>
+      </div>
+    </div>
+</body>
+
+</html>

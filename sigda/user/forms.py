@@ -4,8 +4,8 @@ from wtforms import (Form, StringField, DateTimeField)
 
 class UserForm(Form):
 
-    contextid = StringField('contextid')
     name = StringField('name')
+    passwd = StringField('passwd')
     email = StringField('email')
 
 

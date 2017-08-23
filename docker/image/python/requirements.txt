@@ -6,6 +6,7 @@ WTForms
 raven
 flask
 flask-restful
+flask-assets
 flask-sqlalchemy
 flask-migrate
 flask-script

@@ -14,7 +14,7 @@ SIGDA的定位是创建一个临时的空间，在某些特殊日子给某人或
     cd docker/
     docker-compose up
     
-    visit http://0.0.0.0:5757/index
+    visit http://0.0.0.0:5757/
     graylog http://127.0.0.1:9000/      #admin/admin
 
 

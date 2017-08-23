@@ -15,13 +15,13 @@ def setup_blueprint(app: Flask):
     api = Api(app)
     
     from sigda.index.views import blueprint
-    app.register_blueprint(blueprint, url_prefix='/index')
+    app.register_blueprint(blueprint, url_prefix='/')
 
     from sigda.comment.api import CreateComment
     api.add_resource(CreateComment, '/comment/')
 
     from sigda.user.api import CreateUser
-    api.add_resource(CreateUser, '/user/')
+    api.add_resource(CreateUser, '/login/')
 
     from sigda.context.api import CreateContext
     api.add_resource(CreateContext, '/context/')
