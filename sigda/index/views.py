@@ -10,7 +10,7 @@ blueprint = Blueprint(__name__, __name__)
 @blueprint.route('/')
 def home():
 
-    return render_template('login.html', notifier=None)
+    return render_template('login.html', notifier='')
 
 
 
