@@ -12,8 +12,7 @@ blueprint = Blueprint(__name__, __name__)
 @flask_login.login_required
 def home():
 
-    return 'welcome'
-    #return render_template('login.html', notifier='')
+    return render_template('index.html')
 
 
 

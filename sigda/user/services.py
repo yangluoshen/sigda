@@ -54,16 +54,13 @@ class UserDbService(object):
         return u
 
     @staticmethod
-    def auth(user):
+    def auth(email, passwd):
 
-        if not user:
-            return False
-
-        real_user = UserDbService.get_user_by_email(user.email)
+        real_user = UserDbService.get_user_by_email(email)
         if not real_user:
             return False
 
-        return real_user.passwd == user.passwd
+        return real_user.passwd == passwd
 
 
 class UserAuth(flask_login.UserMixin):
@@ -77,9 +74,11 @@ def user_loader(email):
         return
 
     ua = UserAuth()
-    ua.id = email
+    ua.id = u.email
+    ua.name = u.name
     return ua
 
+'''
 @login_manager.request_loader
 def request_loader(request):
 
@@ -89,11 +88,13 @@ def request_loader(request):
         return
 
     ua = UserAuth()
-    user.id = email
+    ua.id = email
     
-    user.is_authenticated = request.form['passwd'] == u.passwd
+    ua.is_authenticated = request.form.get('passwd') == u.passwd
+    ua.is_authenticated
 
     return ua
+'''
 
 @login_manager.unauthorized_handler
 def unauthorized_handler():
