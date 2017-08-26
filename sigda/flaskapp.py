@@ -12,13 +12,15 @@ from redis import Redis
 def create_app():
     
     from sigda.models import db
+    from sigda.user.services import login_manager
 
     app = Flask(__name__)
+    app.secret_key = 'sigda_s3cr3t'
 
     app.config['SQLALCHEMY_DATABASE_URI'] = const.SQLALCHEMY_DATABASE_URI
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
     db.init_app(app)
-
+    login_manager.init_app(app)
 
     return app
 

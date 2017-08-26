@@ -10,9 +10,9 @@
         <div id="logbox">
           <form id="signup" method="post" action="/user/login/">
             <h1>登录</h1>
-            <input name="name" type="text" placeholder="昵称" class="input pass" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" />
+            <input name="email" type="email" placeholder="邮箱" required="required" class="input pass"/>
+            <input name="name" type="text" placeholder="昵称" required="required" class="input pass" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" />
             <input name="passwd" type="password" placeholder="密码" required="required" class="input pass"/>
-            <input name="email" type="email" placeholder="邮箱(可选）" class="input pass"/>
             <input type="submit" value="登录" class="inputButton"/>
           </form>
 		  <div class="notifier">

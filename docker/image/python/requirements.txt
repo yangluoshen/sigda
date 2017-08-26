@@ -5,6 +5,7 @@ graypy
 WTForms
 raven
 flask
+flask-login
 flask-restful
 flask-assets
 flask-sqlalchemy

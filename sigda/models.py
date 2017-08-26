@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.dialects.mysql import (BIGINT, DATETIME, INTEGER, VARCHAR)
 from datetime import datetime
 
-from sigda.config.common import USERNAME_LEN
+from sigda.config.common import USERNAME_LEN, PASSWD_LEN
 
 
 db = SQLAlchemy()
@@ -46,17 +46,19 @@ class User(db.Model, MySqlTableArgs):
     __tablename__ = 'user'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    email = db.Column(db.String(50), nullable=False)
     name = db.Column(db.String(USERNAME_LEN), nullable=False)
-    email = db.Column(db.String(50), nullable=True)
+    passwd = db.Column(db.String(PASSWD_LEN), nullable=False)
 
-    def __init__(self, name, email=''):
+    def __init__(self, email, name, passwd):
 
         self.name = name 
         self.email = email
+        self.passwd = passwd
 
     def __repr__(self):
 
-        return 'User({}, {})'.format(self.name, self.email)
+        return 'User({}, {}, {})'.format(self.name, self.email, self.passwd)
 
     def __str__(self):
         

@@ -70,4 +70,5 @@ class ErrorCode(object):
 
 
 USERNAME_LEN = 30
+PASSWD_LEN = 50
 
